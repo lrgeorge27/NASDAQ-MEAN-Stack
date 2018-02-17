@@ -1,0 +1,27 @@
+{
+  "name": "nasdaq_stock_app",
+  "version": "1.0.0",
+  "description": "MEAN stack project, stock app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lrgeorge27/NASDAQ-MEAN-Stack.git"
+  },
+  "keywords": [
+    "MEAN",
+    "NASDAQ",
+    "app"
+  ],
+  "author": "Lauren George",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/lrgeorge27/NASDAQ-MEAN-Stack/issues"
+  },
+  "homepage": "https://github.com/lrgeorge27/NASDAQ-MEAN-Stack#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
