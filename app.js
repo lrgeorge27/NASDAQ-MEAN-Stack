@@ -11,21 +11,30 @@ var app = express();
 
 app.set('port', process.env.PORT);
 
+//app.httpMethod('path to listen for', function(to call once connected){});
+
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/node-modules', express.static(__dirname + '/node_modules'));
+
+app.get('/json', function(req, res){
+    console.log("Get json");
+    res
+        .status(200)
+        .json({"jsonData": true});
+});
+
+app.get('/file', function(req, res){
+    console.log("Get file");
+    res
+        .status(200)
+        .sendFile(path.join(__dirname, "package.json"));
+});
+
 
 //add middleware and enable parsing
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-//add routing 
-// app.use('/api', routes); //looks in /api/routes folder with only / beginning path
-
-//connect to mongoDB
-// mongoose.connect('mongodb://lrgeorge27-firstworkspace-5563394/nasdaq');
-// mongoose.connection.once('open', function(){
-//     console.log("Mongoose is listening");
-// });
 
 var server = app.listen(app.get('port'), function(){
     var port = server.address().port;
