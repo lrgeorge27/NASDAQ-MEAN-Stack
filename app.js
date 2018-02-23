@@ -4,7 +4,7 @@ require('./api/db.js'); //starts connection with mongoose, use either dbconnecti
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-// var routes = require('/api/routes');
+var routes = require('./api/routes');
 var path = require('path');
 
 var app = express();
@@ -16,19 +16,7 @@ app.set('port', process.env.PORT);
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/node-modules', express.static(__dirname + '/node_modules'));
 
-app.get('/json', function(req, res){
-    console.log("Get json");
-    res
-        .status(200)
-        .json({"jsonData": true});
-});
-
-app.get('/file', function(req, res){
-    console.log("Get file");
-    res
-        .status(200)
-        .sendFile(path.join(__dirname, "package.json"));
-});
+app.use('/', routes);
 
 
 //add middleware and enable parsing
