@@ -9,6 +9,10 @@ router
     //Ctrl mapping: .http method(var.functionName);
     .get(stocksCtrl.stocksGetAll);
     // .post();
+    
+router
+    .route('/stocks/search')
+    .post(stocksCtrl.searchStock);
 
 router
     .route('/stocks/:stockId')
