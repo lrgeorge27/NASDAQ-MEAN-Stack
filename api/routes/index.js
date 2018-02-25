@@ -15,7 +15,7 @@ router
     .post(stocksCtrl.searchStock);
 
 router
-    .route('/stocks/:stockId')
+    .route('/stocks/:symbol')
     .get(stocksCtrl.stocksGetOne);
     
 // router

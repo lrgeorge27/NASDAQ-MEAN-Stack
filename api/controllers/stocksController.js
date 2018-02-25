@@ -1,11 +1,15 @@
-var stockData = require('../../data/nasdaq/nasdaq.json'); //temp until pulling from db
+/* global stocks */
+// var stockData = require('../../data/nasdaq/nasdaq.json'); //temp until pulling from db
+var mongoose = require('mongoose');
+var Stocks = mongoose.model('Stocks');
+// var ObjectId = require('mongodb');
 
 module.exports.stocksGetAll = function(req, res){
     console.log("Getting stocks");
     console.log(req.query);
     
     var offset = 0;
-    var count = 35;
+    var count = 3288;
     
     if(req.query && req.query.offset) {
         offset = parseInt(req.query.offset, 10);
@@ -15,10 +19,24 @@ module.exports.stocksGetAll = function(req, res){
         count = parseInt(req.query.count, 10);
     }
     
-    var returnData = stockData.slice(offset, offset+count);
-        res
-            .status(200)
-            .json(returnData);
+    Stocks //model var
+        .find() //mongo query
+        .skip(offset) //offset function
+        .limit(count) //count function
+        .exec(function(err, stocks){  //execute function(err, returnDataCollectionName)
+            if(err){
+                console.log("Error finding stocks");
+                res
+                    .status(500)
+                    .json(err);
+            } else{
+                console.log("Found stocks ", stocks.length);
+                // console.log(res);
+                res
+                    .json(stocks);
+            }
+        }); 
+    
 };
 
 module.exports.searchStock = function(req, res){
@@ -31,11 +49,28 @@ module.exports.searchStock = function(req, res){
 
 module.exports.stocksGetOne = function(req, res){
     //extract var = req object. object on req object. url param
-    var stockId = req.params.stockId;
-    //use url param as location id on json array - temporary until connected to db
-    var thisStock = stockData[stockId];
-    console.log("Getting stock: ", stockId);
-        res
-            .status(200)
-            .json(thisStock); //need to change once var is defined for data
+    var symbol = req.params.symbol;
+    console.log("Getting stock: ", symbol);
+    
+    Stocks
+        .findOne({
+            Stocks : Symbol(symbol) //only pulls first stock
+        }, function(err, doc){
+            if(err){
+                console.log("Error finding stock");
+                res
+                    .status(500)
+                    .json({"error finding stock" : err});
+            } else if(!doc) {
+                console.log("No stock available for id " + symbol);
+                res
+                    .status(400)
+                    .json({"error":"No stock available for id " + symbol + "."});
+            } else {
+            res
+                .status(200)
+                .json(doc); 
+        // .exec(
+            }
+         });
 };
