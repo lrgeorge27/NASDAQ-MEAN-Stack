@@ -54,7 +54,7 @@ module.exports.stocksGetOne = function(req, res){
     
     Stocks
         .findOne({
-            Stocks : Symbol(symbol) //only pulls first stock
+            Symbol : symbol //only pulls first stock
         }, function(err, doc){
             if(err){
                 console.log("Error finding stock");
