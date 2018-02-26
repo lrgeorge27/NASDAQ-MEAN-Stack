@@ -14,7 +14,7 @@ app.set('port', process.env.PORT);
 //app.httpMethod('path to listen for', function(to call once connected){});
 
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use('/node-modules', express.static(__dirname + '/node_modules'));
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 app.use('/', routes);
 

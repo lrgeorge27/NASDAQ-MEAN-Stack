@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/lrgeorge27/NASDAQ-MEAN-Stack#readme",
   "dependencies": {
+    "angular": "^1.6.9",
+    "angular-route": "^1.6.9",
     "express": "^4.16.2",
     "mongoose": "^5.0.6"
   }
