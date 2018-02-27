@@ -5,13 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.3/solar/bootstrap.min.css" rel="stylesheet" integrity="sha384-Jpv9vxZao0dlyvegpeTxSgc5cczNCOpcV5ihm8RQbrMo263QmC3Sf5HIMBfr+nqx" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/solar/bootstrap.min.css" rel="stylesheet" integrity="sha384-GC77SCz5O11gVtXl0sSfbQYEWSSznn1wPDHgL1BGUTFU9iEoUrG4IOJa5CBVY8kR" crossorigin="anonymous">
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.3/solar/bootstrap.min.css" rel="stylesheet" integrity="sha384-Jpv9vxZao0dlyvegpeTxSgc5cczNCOpcV5ihm8RQbrMo263QmC3Sf5HIMBfr+nqx" crossorigin="anonymous">-->
     <link href="style.css" re="stylesheet">
     <title>NASDAQ App</title>
 </head>
 
 <body>
     <h1 class="text-primary">Welcome to Lauren's NASDAQ App!</h1>
+
+    <div ng-view></div>
+    <!--content loaded into ng-view div-->
 
     <footer class="footer bg-dark fixed-bottom">
         <p class="text-center text-primary">&copy: 2018 Lauren George</p>
@@ -21,6 +25,8 @@
     <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="../node_modules/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="angularApp.js"></script>
+    <!--<script type="text/javascript" src="../node_modules/angular-utils-pagination/index.js"></script>-->
+    <script type="text/javascript" src="../node_modules/angular-utils-pagination/dirPagination.js"></script>
 </body>
 
 </html>

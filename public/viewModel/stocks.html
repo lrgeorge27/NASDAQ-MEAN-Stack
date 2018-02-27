@@ -1,0 +1,6 @@
+<h1>{{vm.title}}</h1>
+<ul>
+    <li dir-paginate="stock in vm.stocks | itemsPerPage: 25" [total-items="3288" ]>{{stock.Name}}</li>
+</ul>
+
+<dir-pagination-controls></dir-pagination-controls>
