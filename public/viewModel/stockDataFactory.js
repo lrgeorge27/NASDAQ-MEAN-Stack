@@ -6,7 +6,8 @@ angular.module('nasdaqApp').factory('stockDataFactory', stockDataFactory);
 function stockDataFactory($http) {
     return{
         stockList: stockList,
-        singleStock: singleStock
+        singleStock: singleStock, 
+        searchSymbol: searchSymbol
     };
     
     function stockList(){
@@ -15,6 +16,10 @@ function stockDataFactory($http) {
     
     function singleStock(id){
         return $http.get('/stock/' + id).then(complete).catch(failed);
+    }
+    
+    function searchSymbol(symbol){
+        return $http.get('/stocks/' + symbol).then(complete).catch(failed);
     }
     
     function complete(response){
