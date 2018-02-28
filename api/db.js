@@ -39,6 +39,7 @@ process.once('SIGUSR2', function(){    //killed process, ctrl C in command line
 }); 
 
 //Bring in schemas and models
-require('./models/stocksModel.js');
+require('./models/stocksModel');
+require('./models/userModel');
+
 //deleted .js from end of ./hotels.model to match gitHub
-// require('./users.model');

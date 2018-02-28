@@ -18,6 +18,9 @@ function SearchController($routeParams, stockDataFactory){
 //     if(vm.search.$valid){
 //         stockDataFactory.postHistory(symbol, postData).then(function(response){
 //             console.log("added to history");
+            // if(response.status === 200){
+            //     $route.reload();
+            // }
 //         }).catch(function(error){
 //             console.log(error);
 //         });
