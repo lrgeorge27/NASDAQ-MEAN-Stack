@@ -1,15 +1,24 @@
 <div class="container">
     <h1>{{vm.title}}</h1>
+    <h2>Search By Symbol</h2>
+    <form name="vm.search" ng-submit="vm.searchSymbol()">
+        Symbol: <input type="text" name="symbol" required ng-minlength="2" ng-model="stock.Symbol" />
+        <button type="submit" class="btn"> Search </button>
+        <div ng-show="vm.search.$dirty && vm.search.$invalid && vm.isSubmitted">
+            <p>Please enter 2 or more letters.</p>
+        </div>
+    </form>
+
     <table class="table table-striped table-hover ">
         <thead>
             <tr>
-                <th>Symbol</th>
                 <th>Company Name</th>
+                <th>Symbol</th>
                 <th>Last Sale</th>
             </tr>
         </thead>
         <tbody>
-            <tr dir-paginate="stock in vm.stocks | itemsPerPage: 25" [total-items="3288" ]>
+            <tr dir-paginate="stock in vm.stocks | filter: stock.Symbol | itemsPerPage: 25" [total-items="3288" ]>
                 <td><a ng-href="#!/stock/{{stock._id}}">{{stock.Name}}</a></td>
                 <td>{{stock.Symbol}}</td>
                 <td>{{stock.LastSale}}</td>

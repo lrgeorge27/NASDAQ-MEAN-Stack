@@ -1,7 +1,7 @@
 <div class="container">
     <h2>Search By Symbol</h2>
     <form name="vm.search" ng-submit="vm.searchSymbol()">
-        Symbol: <input type="text" name="symbol" required ng-minlength="2" ng-model="symbol" />
+        Symbol: <input type="text" name="symbol" required ng-minlength="2" ng-model=" stock.Symbol" />
         <button type="submit" class="btn"> Search </button>
         <div ng-show="vm.search.$dirty && vm.search.$invalid && vm.isSubmitted">
             <p>Please enter 2 or more letters.</p>
@@ -9,8 +9,8 @@
     </form>
     <h2>Results:</h2>
     <ul ng-show="vm.search.$valid">
-        <li ng-repeat="stock in vm.stocks | filter: symbol">
-            <a ng-href="#!/stock/{{stock._id}}">{{stock.Symbol}}, {{stock.Name}}</a>
+        <li ng-repeat="stock in vm.stocks | filter: stock.Symbol">
+            <a ng-href="#!/stock/{{stock._id}}">{{stock.Symbol}}</a>
         </li>
     </ul>
     <!--<p>Search History:</p>-->
