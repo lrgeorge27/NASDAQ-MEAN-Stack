@@ -1,7 +1,23 @@
-<h1>{{vm.title}}</h1>
-<ul>
-    <li dir-paginate="stock in vm.stocks | itemsPerPage: 25" [total-items="3288" ]><a ng-href="#!/stock/{{stock._id}}">{{stock.Name}}</a></li>
-</ul>
+<div class="container">
+    <h1>{{vm.title}}</h1>
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Company Name</th>
+                <th>Last Sale</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr dir-paginate="stock in vm.stocks | itemsPerPage: 25" [total-items="3288" ]>
+                <td><a ng-href="#!/stock/{{stock._id}}">{{stock.Name}}</a></td>
+                <td>{{stock.Symbol}}</td>
+                <td>{{stock.LastSale}}</td>
+
+            </tr>
+        </tbody>
+    </table>
 
 
-<dir-pagination-controls></dir-pagination-controls>
+    <dir-pagination-controls></dir-pagination-controls>
+</div>

@@ -19,3 +19,9 @@ body {
     height: 90px;
     padding-top: 30px;
 }
+
+.container {
+    padding-left: 30px;
+    padding-right: 30px;
+
+}
