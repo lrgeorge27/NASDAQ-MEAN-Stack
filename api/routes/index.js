@@ -18,6 +18,10 @@ router
     .route('/stocks/:symbol')
     .get(stocksCtrl.stocksGetOne);
     
+router
+    .route('/stock/:id')
+    .get(stocksCtrl.stockById);
+    
 // router
 //     .route('/user/register')
 //     .post(userCtrl.register);

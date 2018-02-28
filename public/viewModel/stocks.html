@@ -1,6 +1,7 @@
 <h1>{{vm.title}}</h1>
 <ul>
-    <li dir-paginate="stock in vm.stocks | itemsPerPage: 25" [total-items="3288" ]>{{stock.Name}}</li>
+    <li dir-paginate="stock in vm.stocks | itemsPerPage: 25" [total-items="3288" ]><a ng-href="#!/stock/{{stock._id}}">{{stock.Name}}</a></li>
 </ul>
+
 
 <dir-pagination-controls></dir-pagination-controls>

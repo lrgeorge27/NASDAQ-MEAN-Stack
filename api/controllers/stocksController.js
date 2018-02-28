@@ -54,7 +54,7 @@ module.exports.stocksGetOne = function(req, res){
     
     Stocks
         .findOne({
-            Symbol : symbol //only pulls first stock
+            Symbol : symbol 
         }, function(err, doc){
             if(err){
                 console.log("Error finding stock");
@@ -72,5 +72,37 @@ module.exports.stocksGetOne = function(req, res){
                 .json(doc); 
         // .exec(
             }
+         });
+};
+
+module.exports.stockById = function(req, res){
+    //extract a parameter and put it into a var
+    var id = req.params.id;
+    console.log("GET stockId", id);
+    
+    Stocks
+        // .findById(stockId)
+        // .exec(
+        .findOne({
+            _id : id 
+        }, function(err, doc){
+            var response = {
+                status: 200,
+                message: doc
+            };
+            if(!doc) {
+                response.status = 404;
+                response.message = {
+                    "message": "Stock not found"
+            };
+            }
+            else if(err){
+                console.log("Error finding stock");
+                response.status = 500;
+                response.message = err;
+            } 
+            res
+                .status(response.status)
+                .json(response.message); 
          });
 };
