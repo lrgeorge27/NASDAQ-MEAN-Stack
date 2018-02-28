@@ -81,8 +81,6 @@ module.exports.stockById = function(req, res){
     console.log("GET stockId", id);
     
     Stocks
-        // .findById(stockId)
-        // .exec(
         .findOne({
             _id : id 
         }, function(err, doc){
@@ -106,3 +104,59 @@ module.exports.stockById = function(req, res){
                 .json(response.message); 
          });
 };
+
+// var _addReview = function(req, res, hotel){
+  
+//   hotel.reviews.push({
+//       name: req.body.name, 
+//       rating: parseInt(req.body.rating, 10),
+//       review: req.body.review
+//   });
+  
+//   hotel.save(function(err, hotelUpdated){
+//       if (err){
+//           res
+//             .status(500)
+//             .json(err);
+//       } else {
+//           res
+//             .status(201)
+//             .json(hotelUpdated.reviews[hotelUpdated.reviews.length -1]);
+//       }
+//   });
+    
+// };
+
+
+// module.exports.addHistory = function(req, res){
+//     var symbol = req.params.symbol;
+//     console.log("Getting stock: ", symbol);
+    
+//     Stocks
+//         .findOne({
+//             Symbol : symbol 
+//         }, function(err, doc){
+//             var response = {
+//                 status: 200,
+//                 message: []
+//             };
+//             if(err){
+//                 console.log("Error finding stock");
+//                 response.status = 500;
+//                 response.message = err;
+//             }
+//             else if(!doc) {
+//                 console.log("Stock not found", symbol);
+//                 response.status = 404;
+//                 response.message = {"message": "Stock" + symbol + "not found "};
+//             }
+//             if (doc){
+//                 _addReview(req, res, doc);
+//             } else {
+//                 console.log("Returned doc", doc);
+//                 res
+//                     .status(200)
+//                     .json(doc);  
+//             }
+//          });
+// };

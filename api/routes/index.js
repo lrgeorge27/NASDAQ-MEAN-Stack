@@ -11,12 +11,10 @@ router
     // .post();
     
 router
-    .route('/stocks/search')
+    .route('/search/:symbol')
+    .get(stocksCtrl.stocksGetOne)
     .post(stocksCtrl.searchStock);
 
-router
-    .route('/stocks/:symbol')
-    .get(stocksCtrl.stocksGetOne);
     
 router
     .route('/stock/:id')

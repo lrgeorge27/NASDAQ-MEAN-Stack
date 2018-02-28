@@ -10,3 +10,4 @@ function StocksController(stockDataFactory) {
 		vm.stocks = response.data;
 	});
 }
+

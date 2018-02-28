@@ -1,4 +1,4 @@
-/* global angular StocksController SingleController*/
+/* global angular StocksController SingleController SearchController*/
 // Lecture 47 - custom directive
 angular.module('nasdaqApp', ['ngRoute', 'angularUtils.directives.dirPagination']).config(config);
 

@@ -1,17 +1,20 @@
 <div class="container">
     <h2>Search By Symbol</h2>
-    <form name="vm.search" ng-submit="vm.addHistory()">
-        Symbol: <input type="text" name="symbol" required ng-minlength="2" ng-model="vm.stock.Symbol" />
-        <div ng-show="vm.search.symbol.$dirty && vm.search.symbol.$invalid && vm.isSubmitted">
+    <form name="vm.search" ng-submit="vm.searchSymbol()">
+        Symbol: <input type="text" name="symbol" required ng-minlength="2" ng-model="symbol" />
+        <button type="submit" class="btn"> Search </button>
+        <div ng-show="vm.search.$dirty && vm.search.$invalid && vm.isSubmitted">
             <p>Please enter 2 or more letters.</p>
         </div>
-        <button type="submit" class="btn"> Search </button>
     </form>
-
-    <h2>Results: {{vm.stock.Name}}</h2>
-
-    <p>Search History:</p>
-    <ul>
-        <li ng-repeat="stock in vm.stock">{{stock.Symbol}}, {{stock.Name}}</li>
+    <h2>Results:</h2>
+    <ul ng-show="vm.search.$valid">
+        <li ng-repeat="stock in vm.stocks | filter: symbol">
+            <a ng-href="#!/stock/{{stock._id}}">{{stock.Symbol}}, {{stock.Name}}</a>
+        </li>
     </ul>
+    <!--<p>Search History:</p>-->
+    <!--<ul>-->
+    <!--    <li ng-repeat="stock in vm.stock">{{stock.Symbol}}, {{stock.Name}}</li>-->
+    <!--</ul>-->
 </div>
