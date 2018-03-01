@@ -4,6 +4,8 @@ var User = mongoose.model('User');
 module.exports.register = function(req, res){
     console.log("registering user");
     
+    console.log(req.body);
+    
     var username = req.body.username;
     var name = req.body.name || null; //null, because name is not required
     var password = req.body.password;

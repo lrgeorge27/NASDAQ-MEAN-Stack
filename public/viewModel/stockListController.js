@@ -9,5 +9,13 @@ function StocksController(stockDataFactory) {
 		console.log(response); //return object
 		vm.stocks = response.data;
 	});
+	
+	vm.submitHandler = function() {
+        console.log("submit");
+        // var symbol = vm.stock.Symbol;
+        console.log(vm.Symbol);
+        // console.log(symbol);
+    };
 }
 
+    

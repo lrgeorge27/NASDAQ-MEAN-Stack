@@ -16,7 +16,7 @@ router
 //search
 router
     .route('/search/:symbol')
-    .get(stocksCtrl.stocksGetOne)
+    .get(stocksCtrl.stocksGetSymbol)
     .post(stocksCtrl.searchStock);
 
 //authentication
@@ -25,9 +25,9 @@ router
     .route('/user/register')
     .post(userCtrl.register);
     
-    router
-        .route('/user/login')
-        .post(userCtrl.login);
+router
+    .route('/user/login')
+    .post(userCtrl.login);
 
     
     

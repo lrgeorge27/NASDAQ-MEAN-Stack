@@ -16,13 +16,12 @@ app.set('port', process.env.PORT);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
-app.use('/', routes);
 
-
-//add middleware and enable parsing
+//add middleware and enable parsing, must come before routes
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.use('/', routes);
 
 var server = app.listen(app.get('port'), function(){
     var port = server.address().port;

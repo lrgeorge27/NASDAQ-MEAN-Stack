@@ -47,7 +47,7 @@ module.exports.searchStock = function(req, res){
         .json(req.body);
 };
 
-module.exports.stocksGetOne = function(req, res){
+module.exports.stocksGetSymbol = function(req, res){
     //extract var = req object. object on req object. url param
     var symbol = req.params.symbol;
     console.log("Getting stock: ", symbol);

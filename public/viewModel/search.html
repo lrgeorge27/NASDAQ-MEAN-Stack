@@ -1,11 +1,11 @@
 <div class="container">
     <h2>Search By Symbol</h2>
-    <form name="vm.search" ng-submit="vm.searchSymbol()">
-        Symbol: <input type="text" name="symbol" required ng-minlength="2" ng-model=" stock.Symbol" />
-        <button type="submit" class="btn"> Search </button>
+    <form name="vm.search" ng-submit="vm.submitHandler()">
+        Symbol: <input type="text" name="symbol" required ng-minlength="2" ng-model="vm.Symbol" />
         <div ng-show="vm.search.$dirty && vm.search.$invalid && vm.isSubmitted">
             <p>Please enter 2 or more letters.</p>
         </div>
+        <button type="submit" class="btn"> Search </button>
     </form>
     <h2>Results:</h2>
     <ul ng-show="vm.search.$valid">

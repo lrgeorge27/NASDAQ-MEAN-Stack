@@ -4,10 +4,15 @@ angular.module('nasdaqApp').controller('SearchController', SearchController);
 function SearchController($routeParams, stockDataFactory){
     var vm = this;
     var symbol = $routeParams.symbol;
-    stockDataFactory.searchSymbol(symbol).then(function(response){
+    stockDataFactory.stocksGetSymbol(symbol).then(function(response){
+        console.log("Stockfactory");
         console.log(response);
         vm.stock = response;
     });
+    
+    vm.submitHandler = function() {
+        console.log("submit");
+    }
 
 // vm.addHistory = function(){
 //     console.log("add to history");
