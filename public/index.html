@@ -13,11 +13,13 @@
 </head>
 
 <body>
-    <h1 class="text-primary">Welcome to Lauren's NASDAQ App!</h1>
+    <na-Navigation></na-Navigation>
+    <div class="container">
+        <h1 class="text-primary">Welcome to Lauren's NASDAQ App!</h1>
 
-    <div ng-view></div>
-    <!--content loaded into ng-view div-->
-
+        <div ng-view></div>
+        <!--content loaded into ng-view div-->
+    </div>
     <footer class="footer bg-dark fixed-bottom">
         <p class="text-center text-primary">&copy: 2018 Lauren George</p>
     </footer>
@@ -31,6 +33,14 @@
     <script type="text/javascript" src="./viewModel/singleStockController.js"></script>
     <script type="text/javascript" src="./viewModel/stockDataFactory.js"></script>
     <script type="text/javascript" src="./viewModel/registerController.js"></script>
+    <script type="text/javascript" src="./viewModel/loginController.js"></script>
+    <script type="text/javascript" src="./viewModel/navigationDirective.js"></script>
+    <script type="text/javascript" src="./viewModel/authentication/authFactory.js"></script>
+    <script type="text/javascript" src="./viewModel/authentication/authInterceptor.js"></script>
+    <script type="text/javascript" src="../node_modules/angular-jwt/dist/angular-jwt.min.js"></script>
+
+
+
 
 </body>
 
