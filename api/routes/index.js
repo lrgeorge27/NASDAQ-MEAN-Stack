@@ -16,8 +16,8 @@ router
 //search
 router
     .route('/search/:symbol')
-    .get(stocksCtrl.stocksGetSymbol)
-    .post(stocksCtrl.searchStock);
+    .get(stocksCtrl.stocksGetSymbol);
+    // .post(stocksCtrl.searchStock);
 
 //authentication
     

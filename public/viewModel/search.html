@@ -8,11 +8,32 @@
         <button type="submit" class="btn"> Search </button>
     </form>
     <h2>Results:</h2>
-    <ul ng-show="vm.search.$valid">
-        <li ng-repeat="stock in vm.stocks | filter: stock.Symbol">
-            <a ng-href="#!/stock/{{stock._id}}">{{stock.Symbol}}</a>
-        </li>
-    </ul>
+    <div ng-if="vm.error">
+        <p>{{vm.error}}</p>
+    </div>
+    <div>
+        <h1>{{vm.symbol.Name}}</h1>
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Industry</th>
+                    <th>Sector</th>
+                    <th>Last Sale</th>
+                    <th>Market Cap</th>
+                    <th>IPO Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{vm.symbol.Symbol}}</td>
+                    <td>{{vm.symbol.Industry}}</td>
+                    <td>{{vm.symbol.Sector}}</td>
+                    <td>{{vm.symbol.LastSale}}</td>
+                    <td>{{vm.symbol.MarketCap}}</td>
+                    <td>{{vm.symbol.IPOyear}}</td>
+
+    </div>
     <!--<p>Search History:</p>-->
     <!--<ul>-->
     <!--    <li ng-repeat="stock in vm.stock">{{stock.Symbol}}, {{stock.Name}}</li>-->

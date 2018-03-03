@@ -39,17 +39,18 @@ module.exports.stocksGetAll = function(req, res){
     
 };
 
-module.exports.searchStock = function(req, res){
-    console.log("Post search");
-    console.log(req.body);
-    res
-        .status(200)
-        .json(req.body);
-};
+// module.exports.searchStock = function(req, res){
+//     console.log("Post search");
+//     console.log(req.body);
+//     res
+//         .status(200)
+//         .json(req.body);
+// };
 
 module.exports.stocksGetSymbol = function(req, res){
     //extract var = req object. object on req object. url param
     var symbol = req.params.symbol;
+        symbol = symbol.toUpperCase();
     console.log("Getting stock: ", symbol);
     
     Stocks
