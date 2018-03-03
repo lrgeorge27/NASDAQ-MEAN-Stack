@@ -1,4 +1,4 @@
-/* global angular StocksController SingleController SearchController*/
+/* global angular StocksController SingleController RegisterController*/
 // Lecture 47 - custom directive
 angular.module('nasdaqApp', ['ngRoute', 'angularUtils.directives.dirPagination']).config(config);
 
@@ -17,6 +17,11 @@ function config($routeProvider) {
 	.when('/search', {
 		templateUrl: 'viewModel/search.html',
 		controller: StocksController,
+		controllerAs: 'vm'
+	})
+		.when('/register', {
+		templateUrl: 'viewModel/register.html',
+		controller: RegisterController,
 		controllerAs: 'vm'
 	});
 }
