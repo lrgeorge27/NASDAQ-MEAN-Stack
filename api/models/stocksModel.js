@@ -2,6 +2,15 @@
 var mongoose = require('mongoose');
 
 //create Schema
+//child Schema
+var searchSchema = new mongoose.Schema({
+    searchOn: {
+        type: Date
+    }
+});
+
+
+//parent Schema
 var stockSchema = new mongoose.Schema({
     //add keys here
     name: {
@@ -24,8 +33,8 @@ var stockSchema = new mongoose.Schema({
     },
     industry:{
         type: String
-    }
-    
+    }, 
+    searchHistory: [searchSchema]
 });
 
 //create the model('modelName', schemaName, 'collection');

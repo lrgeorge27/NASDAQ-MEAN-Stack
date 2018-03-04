@@ -3,6 +3,7 @@ var router = express.Router();
 
 var stocksCtrl = require('../controllers/stocksController.js');
 var userCtrl = require('../controllers/userController.js');
+var historyCtrl = require('../controllers/historyController.js');
 
 router
     .route('/stocks')
@@ -16,8 +17,15 @@ router
 //search
 router
     .route('/search/:symbol')
-    .get(stocksCtrl.stocksGetSymbol);
-    // .post(stocksCtrl.searchStock);
+    .get(stocksCtrl.stocksGetSymbol)
+    .post(historyCtrl.addSearch);
+
+
+router
+    .route('/search/')
+    .get(historyCtrl.searchGetAll);
+    // .post(historyCtrl.addSearch);
+
 
 //authentication
     
