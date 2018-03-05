@@ -1,15 +1,13 @@
 var mongoose = require('mongoose'); 
-var Stocks = mongoose.model('Stocks');
-
+var History = mongoose.model('History');
+// var History = require('../models/historyModel.js');
 
 //GET search history for all stocks
 module.exports.searchGetAll = function(req, res){
-    // var id = req.params.hotelId;
     console.log(req.query);
     
-    Stocks
+    History
         .find()
-        .select('searchHistory')
         .exec(function(err, doc){
             if(!doc) {
                 console.log("No search history available");
@@ -24,13 +22,7 @@ module.exports.searchGetAll = function(req, res){
                     .status(500)
                     .json(err);
             }
-            // else if(!doc.reviews){
-            //     console.log("No reviews available");
-            //     res
-            //         .status(200)
-            //         .json({"message": "There are no reviews available for this hotel."});
-            // }
-            
+
             console.log("Returned doc", doc);
             res
                 .status(200)
@@ -38,213 +30,31 @@ module.exports.searchGetAll = function(req, res){
          });
 };
 
-//GET single review for a hotel
-// module.exports.reviewsGetOne = function(req, res){
-//     var hotelId = req.params.hotelId;
-//     var reviewId = req.params.reviewId;
-//     console.log("GET reviewId" + reviewId + " for hotelId" + hotelId);
-
-//     Hotel
-//         .findById(hotelId)
-//         .select('reviews')
-//         .exec(function(err, hotel){
-    
-//             if(!hotel) {
-//                 res
-//                     .status(404)
-//                     .json({"message": "Hotel ID not found"});
-//                 return;
-//             }
-//             else if(err){
-//                 console.log("Error finding review");
-//                 res
-//                     .status(500)
-//                     .json(err);
-//             }
-//             else {
-//                 var review = hotel.reviews.id(reviewId);
-                
-//                 if(!review){
-//                 console.log("No review available");
-//                 res
-//                     .status(404)
-//                     .json({"message": "No review available for ID given"});
-//                 return;
-//             }
-//             }
-//             console.log("Returned hotel", hotel);
-//             res
-//                 .status(200)
-//                 .json(review);  
-//          });
-// };
-
-//needed to add ObjectIds to sub documents to pull single info from db
-
-var _addQuery = function(req, res, stock){
-  
-  stock.searchHistory.push(new Date());
-  
-  stock.save(function(err, stockUpdated){
-      if (err){
-          res
-            .status(500)
-            .json(err);
-      } else {
-          res
-            .status(201)
-            .json(stockUpdated.searchHistory);
-            // [stockUpdated.searchHistory.length -1]
-      }
-  });
-    
-};
-
 
 
 module.exports.addSearch = function(req, res){
-    var symbol = req.params.symbol;
-        symbol = symbol.toUpperCase();
-    console.log("GET stock", symbol);
+    var symbol = req.body.symbol;
+    var createdOn = new Date();
+
+    console.log(req.query);
     
-    Stocks
-        .findOne({
-            Symbol : symbol 
-        }, function(err, doc){
-            var response = {
-                status: 200,
-                message: []
-            };
+    History.create({
+        symbol : symbol,
+        createdOn : createdOn
+    }, function(err, doc){
             if(err){
                 console.log("Error finding stock");
-                response.status = 500;
-                response.message = err;
+                res.status(500).json(err);
             }
-            else if(!doc) {
-                console.log("Stock not found", symbol);
-                response.status = 404;
-                response.message = {"message": "Stock symbol not found " + symbol};
-            }
-            if (doc){
-                _addQuery(req, res, doc);
-            } else {
+            else {
                 console.log("Returned doc", doc);
                 res
                     .status(200)
-                    .json(doc.searchHistory);  
+                    .json(doc);  
             }
          });
 };
 
-// // module.exports.reviewsUpdateOne = function(req, res){
-// //     var hotelId = req.params.hotelId;
-// //     var reviewId = req.params.reviewId;
-// //     console.log('PUT reviewId ' + reviewId + ' for hotelId ' + hotelId);
-    
-// //     Hotel
-// //         .findById(hotelId)
-// //         .select("reviews") 
-// //         .exec(function(err, hotel){
-// //             var thisReview;
-// //             var response = {
-// //                 status: 200,
-// //                 message: hotel
-// //             };
-// //             if(err){
-// //                 console.log("Error finding hotel");
-// //                 response.status = 500;
-// //                 response.message = err;
-// //             } 
-// //             else if(!hotel) {
-// //                 response.status = 404;
-// //                 response.message = {"message": "Hotel ID not found"};
-// //             }else{
-// //                 //Get the review
-// //                 thisReview = hotel.reviews.id(reviewId);
-// //                 //if the review doesn't exist in Mongoose
-// //                 if(!thisReview){
-// //                     response.status = 404;
-// //                     response.message = {"message": "Review ID not found" + reviewId};
-// //                 }
-// //             }
-// //             if (response.status !== 200){
-// //                 res
-// //                     .status(response.status)
-// //                     .json(response.message); 
-// //             } else {
-// //                 //update data
-// //               thisReview.name = req.body.name;
-// //               thisReview.rating = parseInt(req.body.rating, 10);
-// //               thisReview.review = req.body.review;
-// //                 //save model instance to mongoDB
-// //                 hotel.save(function(err, hotelUpdated){
-// //               if(err){
-// //                   res 
-// //                      .status(500)
-// //                      .json(err);
-// //               } else {
-// //                   res
-// //                      .status(204) //success, no content
-// //                      .json();
-// //               }
-// //             });
-// //             }
-// //          });
 
-// // };
 
-// // module.exports.reviewsDeleteOne = function(req, res){
-// //      var hotelid = req.params.hotelId;
-// //     var reviewId = req.params.reviewId;
-// //     console.log('PUT reviewId ' + reviewId + ' for hotelId ' + hotelId);
-    
-// //     Hotel
-// //         .findById(hotelId)
-// //         .select("reviews") 
-// //         .exec(function(err, hotel){
-// //             var thisReview;
-// //             var response = {
-// //                 status: 200,
-// //                 message: hotel
-// //             };
-// //             if(err){
-// //                 console.log("Error finding hotel");
-// //                 response.status = 500;
-// //                 response.message = err;
-// //             } 
-// //             else if(!hotel) {
-// //                 response.status = 404;
-// //                 response.message = {"message": "Hotel ID not found"};
-// //             }else{
-// //                 //Get the review
-// //                 thisReview = hotel.reviews.id(reviewId);
-// //                 //if the review doesn't exist in Mongoose
-// //                 if(!thisReview){
-// //                     response.status = 404;
-// //                     response.message = {"message": "Review ID not found" + reviewId};
-// //                 }
-// //             }
-// //             if (response.status !== 200){
-// //                 res
-// //                     .status(response.status)
-// //                     .json(response.message); 
-// //             } else {
-// //                 //delete the review
-// //                 hotel.reviews.id(reviewId).remove();
-// //                 //save changes to model instance to mongoDB
-// //                 hotel.save(function(err, hotelUpdated){
-// //               if(err){
-// //                   res 
-// //                      .status(500)
-// //                      .json(err);
-// //               } else {
-// //                   res
-// //                      .status(204) //success, no content
-// //                      .json();
-// //               }
-// //             });
-// //             }
-// //          });
 
-    
-// };
