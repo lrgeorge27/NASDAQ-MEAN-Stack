@@ -17,12 +17,31 @@ function StocksController(stockDataFactory) {
       	stockDataFactory.stocksGetSymbol(symbol).then(function(response) { //links to db array
 		console.log(response); //return object
 		vm.symbol = response.data;
+		    if (response.data){
+		        console.log("saved");
+    	        stockDataFactory.addSearch({symbol: symbol}).then(function(response){
+    	        console.log(response);
+    	        }).catch(function(error){
+    	           // if(error){
+    	            console.log(error);
+    	       // }
+    	        }
+    	       );
+      	    }
     }).catch(function(error){
     	if (error){
     		console.log(error);
     		vm.error = "No stocks match symbol: " + symbol;
     	}
-    });
+            // $http.post('/search/', symbol).then(function(result){
+            //         console.log(result);
+            //         // vm.message = "Registration successful! Please login.";
+            //         // vm.error = "";
+            //     }).catch(function(error){
+            //         console.log(error);
+            //     });
+    	}
+    );
 };
 //make ajax call once search is successful to save
 	// vm.save = function(){

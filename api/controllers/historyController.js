@@ -43,7 +43,7 @@ module.exports.addSearch = function(req, res){
         createdOn : createdOn
     }, function(err, doc){
             if(err){
-                console.log("Error finding stock");
+                console.log("Error saving stock");
                 res.status(500).json(err);
             }
             else {

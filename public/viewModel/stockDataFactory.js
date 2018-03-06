@@ -8,7 +8,7 @@ function stockDataFactory($http) {
         stockList: stockList,
         singleStock: singleStock, 
         stocksGetSymbol: stocksGetSymbol,
-        postHistory: postHistory
+        addSearch: addSearch
     };
     
     function stockList(){
@@ -23,8 +23,8 @@ function stockDataFactory($http) {
         return $http.get('/search/' + symbol).then(complete).catch(failed);
     }
     
-    function postHistory(symbol, postData){
-        return $http.post('/search/' + symbol).then(complete).catch(failed);
+    function addSearch(symbol){
+        return $http.post('/search/', symbol).then(complete).catch(failed);
     }
     
     function complete(response){
