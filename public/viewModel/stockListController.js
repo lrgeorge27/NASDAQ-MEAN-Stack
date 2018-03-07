@@ -18,6 +18,7 @@ function StocksController(stockDataFactory) {
 		console.log(response); //return object
 		vm.symbol = response.data;
 		    if (response.data){
+		        //make ajax call once search is successful to save
 		        console.log("saved");
     	        stockDataFactory.addSearch({symbol: symbol}).then(function(response){
     	        console.log(response);
@@ -33,41 +34,21 @@ function StocksController(stockDataFactory) {
     		console.log(error);
     		vm.error = "No stocks match symbol: " + symbol;
     	}
-            // $http.post('/search/', symbol).then(function(result){
-            //         console.log(result);
-            //         // vm.message = "Registration successful! Please login.";
-            //         // vm.error = "";
-            //     }).catch(function(error){
-            //         console.log(error);
-            //     });
     	}
     );
 };
-//make ajax call once search is successful to save
-	// vm.save = function(){
- //       console.log("click");
- //       var user = {
- //           username: vm.username,
- //           password: vm.password,
- //           name: vm.name
- //       };
-        
- //       if(!vm.username || !vm.password){
- //           vm.error = "Please add a username and password.";
- //       } else{
- //           if(vm.password !== vm.passwordRepeat) {
- //               vm.error = "Password and Repeat Password do not match.";
- //           } else {
- //               $http.post('/user/register', user).then(function(result){
- //                   console.log(result);
- //                   vm.message = "Registration successful! Please login.";
- //                   vm.error = "";
- //               }).catch(function(error){
- //                   console.log(error);
- //               });
- //           }
- //       }
- //   };
 
+    vm.showHistory = function(){
+        console.log("history");
+        stockDataFactory.searchGetAll().then(function(response){
+            console.log(response.data);
+            vm.searchHistory = response.data;
+        }).catch(function(error){
+            if(error){
+                console.log(error);
+                vm.error = "Unable to retrieve search history.";
+            }
+        });
+    };
 
 }   
