@@ -26,7 +26,7 @@ function LoginController($http, $location, $window, AuthFactory, jwtHelper){
                     AuthFactory.isLoggedIn = true;
                     //username appears next to welcome when logged in
                     var token = $window.sessionStorage.token;
-                    var decodedToken = jwtHelper.decodedToken(token);
+                    var decodedToken = jwtHelper.decodeToken(token);
                     vm.loggedInUser = decodedToken.username;
                 }
             }).catch(function(error){

@@ -9,7 +9,8 @@ function stockDataFactory($http) {
         singleStock: singleStock, 
         stocksGetSymbol: stocksGetSymbol,
         addSearch: addSearch,
-        searchGetAll: searchGetAll
+        searchGetAll: searchGetAll, 
+        saveToUser: saveToUser
     };
     
     function stockList(){
@@ -31,6 +32,11 @@ function stockDataFactory($http) {
     function searchGetAll(){
         return $http.get('/search/').then(complete).catch(failed);
     }
+    
+    function saveToUser(saveStock){
+        return $http.post('/user/').then(complete).catch(failed);
+    }
+
     
     function complete(response){
         return response;

@@ -69,3 +69,39 @@ module.exports.authentication = function(req, res, next){
         res.status(403).json('No token provided');
     }
 };
+
+module.exports.saveToUser = function(req, res){
+    console.log("save to user:");
+    console.log("body");
+    console.log(req.body);
+    console.log("data");
+    console.log(req.data);
+    var name = req.body.name;
+    var symbol = req.body.symbol;
+    var lastSale = req.body.lastSale;
+    var marketCap = req.body.marketCap;
+    var sector = req.body.sector;
+    var industry = req.body.industry;
+
+    console.log(req.query);
+    
+    User.create({
+        name: name,
+        symbol: symbol,
+        lastSale: lastSale,
+        marketCap: marketCap,
+        sector: sector,
+        industry: industry
+    }, function(err, doc){
+            if(err){
+                console.log("Error saving stock");
+                res.status(500).json(err);
+            }
+            else {
+                console.log("Returned doc", doc);
+                res
+                    .status(200)
+                    .json(doc);  
+            }
+         });
+};

@@ -36,6 +36,11 @@ router
 router
     .route('/user/login')
     .post(userCtrl.login);
+    
+router
+    .route('/user')
+    .post(userCtrl.saveToUser);
+
 
     
     

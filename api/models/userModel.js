@@ -14,7 +14,7 @@ var stockSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-        marketCap:{
+    marketCap:{
         type: Number,
     },
     sector:{
