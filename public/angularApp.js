@@ -1,4 +1,4 @@
-/* global angular StocksController SingleController RegisterController LoginController*/
+/* global angular StocksController SingleController RegisterController LoginController NewsController*/
 // Lecture 47 - custom directive
 angular.module('nasdaqApp', ['ngRoute', 'angularUtils.directives.dirPagination', 'angular-jwt']).config(config).run(run);
 
@@ -44,6 +44,14 @@ function config($routeProvider, $httpProvider) {
 		controllerAs: 'vm',
 		access: {
 			restricted: true
+		}
+	})
+		.when('/news', {
+		templateUrl: 'viewModel/newsAPI/news.html',
+		controller: NewsController,
+		controllerAs: 'vm',
+		access: {
+			restricted: false
 		}
 	})
 	.otherwise({

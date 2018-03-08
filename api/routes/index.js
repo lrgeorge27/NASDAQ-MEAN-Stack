@@ -23,7 +23,6 @@ router
 router
     .route('/search/:symbol')
     .get(stocksCtrl.stocksGetSymbol);
-    // .post(historyCtrl.addSearch);
 
 
 
