@@ -46,7 +46,7 @@ function StocksController(stockDataFactory) {
         }).catch(function(error){
             if(error){
                 console.log(error);
-                vm.error = "Unable to retrieve search history.";
+                vm.err = "Unable to retrieve search history.";
             }
         });
     };

@@ -1,15 +1,20 @@
 <div class="container">
     <h2>{{vm.title}}</h2>
-    <!--<button type="submit" class="btn btn-primary" ng-click="vm.getNews()">Get News</button>-->
     <div>
-        <!--<ul>-->
-        <!--    <li ng-repeat="news in vm.news">{{news.name}}</li>-->
-        <!--</ul>-->
-
-        <ul>
-            <li ng-repeat="article in vm.articles"><a href='{{article.url}}' target="_blank">{{article.title}}, {{article.author}} : {{article.source.name}}</a></li>
-            <!--<li>{{vm.articles.title}}</li>-->
-        </ul>
-        <!--<p>{{vm.articles}}</p>-->
+        <div class="panel panel-info" ng-repeat="article in vm.articles">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{article.source.name}}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <a href='{{article.url}}' target="_blank"><img src="{{article.urlToImage}}" height="100px" width="200px"></img></a>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><a href='{{article.url}}' target="_blank">{{article.title}}</a>, by {{article.author}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

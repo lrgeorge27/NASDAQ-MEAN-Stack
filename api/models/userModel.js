@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+//parent schema
 var userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -12,7 +13,7 @@ var userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    } 
 });
 
 mongoose.model('User', userSchema);
